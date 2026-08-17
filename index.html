@@ -1,1328 +1,1258 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAALI PEELI RADIO</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Rye&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #080705;
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(20, 13, 2, 0.02),
+            rgba(8, 6, 2, 0.18)
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.04),
+            rgba(220, 170, 45, 0.08),
+            rgba(0, 0, 0, 0.06)
+        ),
+        url("bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0),
+            rgba(8, 6, 2, 0.12)
+        );
+
+    pointer-events: none;
+}
+
+.top-left {
+    position: absolute;
+    top: 22px;
+    left: 30px;
+    z-index: 30;
+}
+
+/* ONLY CHANGE: more visible time + glowing yellow dot */
+.live-time {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 10px 17px;
+
+    color: #ffe07a;
+
+    background: rgba(8, 7, 4, 0.78);
+
+    border: 1px solid rgba(255, 211, 82, 0.78);
+    border-radius: 20px;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.35),
+        0 0 20px rgba(242, 193, 71, 0.28),
+        0 0 35px rgba(242, 193, 71, 0.10);
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    text-shadow:
+        0 0 12px rgba(255, 211, 82, 0.45);
+}
 
-    <title>KAALI PEELI RADIO</title>
+/* glowing yellow dot */
+.live-time::before {
+    content: "";
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    width: 7px;
+    height: 7px;
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Rye&display=swap"
-        rel="stylesheet"
-    >
+    flex-shrink: 0;
 
-    <style>
+    border-radius: 50%;
 
-        * {
-            box-sizing: border-box;
-        }
+    background: #ffd84d;
 
-        html {
-            scroll-behavior: smooth;
-        }
+    box-shadow:
+        0 0 6px #ffd84d,
+        0 0 12px rgba(255, 216, 77, 0.9),
+        0 0 20px rgba(255, 216, 77, 0.55);
+}
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
-            background: #07151c;
-        }
+.projects-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 30;
 
-        .hero {
-            position: relative;
-            height: 100vh;
-            min-height: 600px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
 
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(4, 14, 20, 0.18),
-                    rgba(4, 14, 20, 0.42)
-                ),
-                url("bg.jpg");
+    padding: 10px 17px;
 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+    /* ONLY CHANGE: stronger visibility */
+    color: #ffe07a;
 
-        .hero::after {
-            content: "";
+    background: rgba(8, 7, 4, 0.78);
 
-            position: absolute;
-            inset: 0;
+    border: 1px solid rgba(255, 211, 82, 0.78);
+    border-radius: 30px;
 
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(0, 0, 0, 0.02),
-                    rgba(0, 10, 16, 0.25)
-                );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
-            pointer-events: none;
-        }
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
 
-        .top-left {
-            position: absolute;
-            top: 22px;
-            left: 30px;
-            z-index: 30;
-        }
+    text-decoration: none;
 
-        .live-time {
-            padding: 8px 13px;
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.35),
+        0 0 20px rgba(242, 193, 71, 0.25),
+        0 0 35px rgba(242, 193, 71, 0.10);
 
-            color: rgba(255, 255, 255, 0.95);
+    transition: 0.3s ease;
+}
 
-            background: rgba(8, 20, 27, 0.38);
+.projects-button span {
+    font-size: 16px;
+    transition: 0.3s ease;
+}
 
-            border: 1px solid rgba(255, 255, 255, 0.2);
+.projects-button:hover {
+    color: #fff0a8;
 
-            border-radius: 20px;
+    background:
+        rgba(218, 166, 47, 0.20);
 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+    border-color:
+        rgba(255, 221, 100, 0.95);
 
-            font-family: "DM Sans", sans-serif;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        0 0 28px rgba(242, 193, 71, 0.30);
 
-            font-size: 13px;
-            font-weight: 600;
+    transform: translateY(-2px);
+}
 
-            letter-spacing: 0.5px;
+.projects-button:hover span {
+    transform: translate(3px, -3px);
+}
 
-            box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.2);
+.player {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
 
-            text-shadow:
-                0 2px 12px rgba(0, 0, 0, 0.6);
-        }
+    transform: translateX(-50%);
 
-        .projects-button {
-            position: absolute;
+    width: 560px;
+    min-height: 78px;
 
-            top: 20px;
-            right: 30px;
+    padding: 12px 17px;
 
-            z-index: 30;
+    display: grid;
 
-            display: flex;
-            align-items: center;
-            gap: 9px;
+    grid-template-columns:
+        48px minmax(0, 1fr) auto;
 
-            padding: 10px 17px;
+    grid-template-rows:
+        auto auto;
 
-            color: rgba(255, 255, 255, 0.92);
+    column-gap: 15px;
+    row-gap: 5px;
 
-            background: rgba(8, 20, 27, 0.38);
+    align-items: center;
 
-            border: 1px solid rgba(255, 255, 255, 0.22);
+    background:
+        rgba(12, 10, 6, 0.66);
 
-            border-radius: 30px;
+    border:
+        1px solid rgba(242, 193, 71, 0.38);
 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+    border-radius: 60px;
 
-            font-family: "DM Sans", sans-serif;
+    backdrop-filter:
+        blur(16px) saturate(125%);
 
-            font-size: 11px;
-            font-weight: 600;
+    -webkit-backdrop-filter:
+        blur(16px) saturate(125%);
 
-            letter-spacing: 1.5px;
+    box-shadow:
+        0 0 30px rgba(242, 193, 71, 0.08),
+        0 12px 38px rgba(0, 0, 0, 0.42);
 
-            text-decoration: none;
+    z-index: 25;
 
-            box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease;
+}
 
-            transition: 0.3s ease;
-        }
+.player:hover {
+    background:
+        rgba(14, 11, 6, 0.73);
 
-        .projects-button span {
-            font-size: 16px;
-            transition: 0.3s ease;
-        }
+    border-color:
+        rgba(242, 193, 71, 0.52);
 
-        .projects-button:hover {
-            color: #ffffff;
+    box-shadow:
+        0 0 38px rgba(242, 193, 71, 0.12),
+        0 14px 42px rgba(0, 0, 0, 0.48);
+}
 
-            background: rgba(255, 255, 255, 0.12);
+.album {
+    grid-row: 1 / 3;
 
-            border-color: rgba(255, 255, 255, 0.42);
+    width: 48px;
+    height: 48px;
 
-            transform: translateY(-2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-            box-shadow:
-                0 10px 30px rgba(0, 0, 0, 0.28);
-        }
+    border-radius: 50%;
 
-        .projects-button:hover span {
-            transform: translate(3px, -3px);
-        }
+    background:
+        linear-gradient(
+            135deg,
+            #e9b83f,
+            #6e4d0e
+        );
 
-        .player {
-            position: absolute;
+    border:
+        1px solid rgba(255, 210, 93, 0.42);
 
-            bottom: 30px;
-            left: 50%;
+    box-shadow:
+        0 0 18px rgba(229, 176, 52, 0.18);
+}
 
-            transform: translateX(-50%);
+.album::before {
+    content: "♫";
 
-            width: 560px;
-            min-height: 78px;
+    color: #17130a;
 
-            padding: 12px 17px;
+    font-family: Georgia, serif;
+    font-size: 23px;
+}
 
-            display: grid;
+.song-info {
+    min-width: 0;
+}
 
-            grid-template-columns:
-                48px minmax(0, 1fr) auto;
+.song-name {
+    color: #f5d26b;
 
-            grid-template-rows:
-                auto auto;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
 
-            column-gap: 15px;
-            row-gap: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-            align-items: center;
+.song-film {
+    margin-top: 3px;
 
-            background:
-                rgba(10, 24, 31, 0.58);
+    color:
+        rgba(245, 232, 197, 0.68);
 
-            border: 1px solid rgba(230, 245, 248, 0.2);
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
 
-            border-radius: 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-            backdrop-filter: blur(18px) saturate(125%);
-            -webkit-backdrop-filter: blur(18px) saturate(125%);
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 7px;
 
-            box-shadow:
-                0 0 30px rgba(118, 183, 194, 0.12),
-                0 10px 35px rgba(0, 0, 0, 0.42);
+    grid-row: 1 / 3;
+}
 
-            z-index: 25;
+.control {
+    width: 35px;
+    height: 35px;
 
-            transition: 0.3s ease;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        .player:hover {
-            background:
-                rgba(10, 24, 31, 0.68);
+    padding: 0;
 
-            border-color:
-                rgba(230, 245, 248, 0.3);
+    border:
+        1px solid rgba(242, 193, 71, 0.28);
 
-            box-shadow:
-                0 0 35px rgba(118, 183, 194, 0.18),
-                0 12px 40px rgba(0, 0, 0, 0.5);
-        }
+    border-radius: 50%;
 
-        .album {
-            grid-row: 1 / 3;
+    background:
+        rgba(255, 255, 255, 0.055);
 
-            width: 48px;
-            height: 48px;
+    color:
+        rgba(244, 222, 166, 0.95);
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
 
-            flex-shrink: 0;
+    cursor: pointer;
 
-            border-radius: 50%;
+    transition: 0.2s ease;
+}
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #9ccbd2,
-                    #426b76
-                );
+.control:hover {
+    background:
+        rgba(242, 193, 71, 0.16);
 
-            border:
-                1px solid rgba(255, 255, 255, 0.2);
+    border-color:
+        rgba(242, 193, 71, 0.58);
 
-            box-shadow:
-                0 0 18px rgba(141, 204, 213, 0.2);
-        }
+    color:
+        #ffd96a;
 
-        .album::before {
-            content: "♫";
+    transform: scale(1.08);
+}
 
-            color: rgba(255, 255, 255, 0.9);
+.control:active {
+    transform: scale(0.94);
+}
 
-            font-family: Georgia, serif;
+.play {
+    width: 43px;
+    height: 43px;
 
-            font-size: 23px;
-        }
+    background:
+        #edbd43;
 
-        .song-info {
-            min-width: 0;
-        }
+    color:
+        #171208;
 
-        .song-name {
-            color: #edf6f7;
+    border-color:
+        rgba(255, 222, 125, 0.9);
 
-            font-family: "DM Sans", sans-serif;
+    font-size: 15px;
 
-            font-size: 15px;
-            font-weight: 700;
+    box-shadow:
+        0 0 20px rgba(242, 193, 71, 0.28);
+}
 
-            white-space: nowrap;
+.play:hover {
+    background:
+        #ffd15b;
 
-            overflow: hidden;
+    color:
+        #171208;
 
-            text-overflow: ellipsis;
-        }
+    box-shadow:
+        0 0 24px rgba(242, 193, 71, 0.35);
+}
 
-        .song-film {
-            margin-top: 3px;
+.progress-area {
+    grid-column: 2;
 
-            color: rgba(210, 230, 234, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-            font-family: "DM Sans", sans-serif;
+    width: 100%;
+}
 
-            font-size: 10px;
-            font-weight: 500;
+.time {
+    width: 30px;
 
-            white-space: nowrap;
+    color:
+        rgba(244, 202, 91, 0.78);
 
-            overflow: hidden;
+    font-family: "DM Sans", sans-serif;
+    font-size: 8px;
+    font-weight: 500;
 
-            text-overflow: ellipsis;
-        }
+    flex-shrink: 0;
+}
 
-        .controls {
-            display: flex;
+.time:last-child {
+    text-align: right;
+}
 
-            align-items: center;
+.progress {
+    flex: 1;
 
-            gap: 7px;
+    width: 100%;
+    height: 3px;
 
-            grid-row: 1 / 3;
-        }
+    appearance: none;
+    -webkit-appearance: none;
 
-        .control {
-            width: 35px;
-            height: 35px;
+    border-radius: 10px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    background:
+        rgba(255, 255, 255, 0.2);
 
-            padding: 0;
+    cursor: pointer;
+    outline: none;
+}
 
-            border: 1px solid rgba(255, 255, 255, 0.15);
+.progress::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
 
-            border-radius: 50%;
+    width: 9px;
+    height: 9px;
 
-            background:
-                rgba(255, 255, 255, 0.055);
+    border-radius: 50%;
 
-            color: rgba(242, 249, 250, 0.9);
+    background:
+        #edbd43;
 
-            font-family: Arial, sans-serif;
+    box-shadow:
+        0 0 10px rgba(242, 193, 71, 0.65);
+}
 
-            font-size: 14px;
+.progress::-moz-range-thumb {
+    width: 9px;
+    height: 9px;
 
-            cursor: pointer;
+    border: none;
+    border-radius: 50%;
 
-            transition: 0.2s ease;
-        }
+    background:
+        #edbd43;
+}
 
-        .control:hover {
-            background:
-                rgba(255, 255, 255, 0.13);
+.volume-area {
+    position: absolute;
 
-            border-color:
-                rgba(255, 255, 255, 0.3);
+    right: 20px;
+    bottom: -29px;
 
-            transform: scale(1.08);
-        }
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
 
-        .control:active {
-            transform: scale(0.94);
-        }
+.volume-icon {
+    color:
+        rgba(244, 202, 91, 0.82);
 
-        .play {
-            width: 43px;
-            height: 43px;
+    font-size: 12px;
+}
 
-            background: #edf7f8;
+.volume {
+    width: 65px;
+    height: 3px;
 
-            color: #122932;
+    appearance: none;
+    -webkit-appearance: none;
 
-            border-color:
-                rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
 
-            font-size: 15px;
+    background:
+        rgba(255, 255, 255, 0.2);
 
-            box-shadow:
-                0 0 17px rgba(224, 242, 245, 0.2);
-        }
+    cursor: pointer;
+}
 
-        .play:hover {
-            background: #ffffff;
-            color: #10252c;
-        }
+.volume::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
 
-        .progress-area {
-            grid-column: 2;
+    width: 9px;
+    height: 9px;
 
-            display: flex;
+    border-radius: 50%;
 
-            align-items: center;
+    background:
+        #edbd43;
 
-            gap: 8px;
+    box-shadow:
+        0 0 8px rgba(242, 193, 71, 0.5);
+}
 
-            width: 100%;
-        }
+.volume::-moz-range-thumb {
+    width: 9px;
+    height: 9px;
 
-        .time {
-            width: 30px;
+    border: none;
+    border-radius: 50%;
 
-            color:
-                rgba(225, 239, 242, 0.5);
+    background:
+        #edbd43;
+}
 
-            font-family: "DM Sans", sans-serif;
+/* INFO PAGE */
+/* ONLY CHANGE: bg2.jpg added */
+.about {
+    min-height: 100vh;
 
-            font-size: 8px;
+    padding: 100px 25px;
 
-            flex-shrink: 0;
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        .time:last-child {
-            text-align: right;
-        }
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(8, 8, 8, 0.72),
+            rgba(17, 16, 13, 0.82)
+        ),
+        url("bg2.jpg");
 
-        .progress {
-            flex: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
-            width: 100%;
-            height: 3px;
+.about-box {
+    width: 850px;
+    max-width: 100%;
 
-            appearance: none;
-            -webkit-appearance: none;
+    padding: 60px;
 
-            border-radius: 10px;
+    text-align: center;
 
-            background:
-                rgba(255, 255, 255, 0.17);
+    background:
+        rgba(18, 17, 13, 0.78);
 
-            cursor: pointer;
+    border:
+        1px solid rgba(232, 169, 47, 0.22);
 
-            outline: none;
-        }
+    border-radius: 25px;
 
-        .progress::-webkit-slider-thumb {
-            appearance: none;
-            -webkit-appearance: none;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.55),
+        0 0 40px rgba(232, 169, 47, 0.04);
 
-            width: 9px;
-            height: 9px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
 
-            border-radius: 50%;
+.small-heading {
+    margin: 0 0 15px;
 
-            background: #edf7f8;
+    color: #d9a52f;
 
-            box-shadow:
-                0 0 8px rgba(237, 247, 248, 0.5);
-        }
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-weight: 600;
+}
 
-        .progress::-moz-range-thumb {
-            width: 9px;
-            height: 9px;
+.about-box h1 {
+    margin: 0;
 
-            border: none;
+    color: #f0c44d;
 
-            border-radius: 50%;
+    font-family: "Rye", serif;
+    font-size: 60px;
+    font-weight: normal;
+    line-height: 1.1;
 
-            background: #edf7f8;
-        }
+    text-shadow:
+        0 0 20px rgba(232, 169, 47, 0.12);
+}
 
-        .volume-area {
-            position: absolute;
+.line {
+    width: 70px;
+    height: 2px;
 
-            right: 20px;
-            bottom: -29px;
+    margin: 30px auto;
 
-            display: flex;
+    background:
+        #e5a82f;
 
-            align-items: center;
+    box-shadow:
+        0 0 10px rgba(229, 168, 47, 0.3);
+}
 
-            gap: 7px;
-        }
+.description {
+    max-width: 650px;
+    margin: auto;
 
-        .volume-icon {
-            color:
-                rgba(230, 243, 245, 0.65);
+    color:
+        rgba(244, 229, 190, 0.76);
 
-            font-size: 12px;
-        }
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    line-height: 1.8;
+}
 
-        .volume {
-            width: 65px;
-            height: 3px;
+.creator {
+    margin-top: 50px;
+    padding-top: 35px;
 
-            appearance: none;
-            -webkit-appearance: none;
+    border-top:
+        1px solid rgba(232, 169, 47, 0.16);
+}
 
-            border-radius: 10px;
+.creator-title {
+    margin: 0 0 10px;
 
-            background:
-                rgba(255, 255, 255, 0.18);
+    color:
+        rgba(217, 165, 47, 0.65);
 
-            cursor: pointer;
-        }
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+}
 
-        .volume::-webkit-slider-thumb {
-            appearance: none;
-            -webkit-appearance: none;
+.creator h2 {
+    margin: 0;
 
-            width: 9px;
-            height: 9px;
+    color:
+        #f3c84b;
 
-            border-radius: 50%;
+    font-family: "Rye", serif;
+    font-size: 38px;
+    font-weight: normal;
 
-            background: #edf7f8;
-        }
+    text-shadow:
+        0 0 18px rgba(232, 169, 47, 0.16);
+}
 
-        .volume::-moz-range-thumb {
-            width: 9px;
-            height: 9px;
+.creator-role {
+    margin: 12px 0 0;
 
-            border: none;
+    color:
+        rgba(244, 229, 190, 0.72);
 
-            border-radius: 50%;
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
 
-            background: #edf7f8;
-        }
+.creator-info {
+    max-width: 550px;
+    margin: 25px auto 0;
 
-        .about {
-            min-height: 100vh;
+    color:
+        rgba(225, 213, 180, 0.58);
 
-            padding: 100px 25px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+}
 
-            display: flex;
+.creator-info strong {
+    color:
+        rgba(243, 200, 75, 0.9);
 
-            justify-content: center;
-            align-items: center;
+    font-weight: 600;
+}
 
-            background:
-                linear-gradient(
-                    to bottom,
-                    #07151c,
-                    #0b252e
-                );
-        }
+.copyright {
+    margin-top: 35px;
 
-        .about-box {
-            width: 850px;
-            max-width: 100%;
+    color:
+        rgba(217, 165, 47, 0.38);
 
-            padding: 60px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
 
-            text-align: center;
+@media (max-width: 700px) {
 
-            background:
-                rgba(13, 34, 43, 0.58);
+    .hero {
+        min-height: 620px;
+    }
 
-            border:
-                1px solid rgba(220, 242, 246, 0.14);
+    .top-left {
+        top: 20px;
+        left: 20px;
+    }
 
-            border-radius: 25px;
+    .projects-button {
+        top: 18px;
+        right: 20px;
 
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.42);
+        padding: 9px 13px;
 
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-        }
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
 
-        .small-heading {
-            margin: 0 0 15px;
+    .player {
+        width: calc(100% - 25px);
 
-            color:
-                rgba(184, 220, 226, 0.72);
+        bottom: 20px;
 
-            font-family: "DM Sans", sans-serif;
+        padding: 11px 13px;
 
-            font-size: 11px;
+        grid-template-columns:
+            44px minmax(0, 1fr) auto;
 
-            letter-spacing: 4px;
+        column-gap: 12px;
+    }
 
-            font-weight: 600;
-        }
+    .album {
+        width: 44px;
+        height: 44px;
+    }
 
-        .about-box h1 {
-            margin: 0;
+    .song-name {
+        font-size: 14px;
+    }
 
-            color: #edf6f7;
+    .song-film {
+        font-size: 9px;
+    }
 
-            font-family: "Rye", serif;
+    .controls {
+        gap: 4px;
+    }
 
-            font-size: 60px;
+    .control {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
 
-            font-weight: normal;
+    .play {
+        width: 39px;
+        height: 39px;
+    }
 
-            line-height: 1.1;
+    .about {
+        padding: 70px 15px;
+    }
 
-            text-shadow:
-                0 0 20px rgba(186, 225, 232, 0.12);
-        }
+    .about-box {
+        padding: 45px 25px;
+    }
 
-        .line {
-            width: 70px;
-            height: 2px;
+    .about-box h1 {
+        font-size: 40px;
+    }
 
-            margin: 30px auto;
+    .description {
+        font-size: 15px;
+    }
 
-            background:
-                #a7d8df;
+    .creator h2 {
+        font-size: 30px;
+    }
+}
 
-            box-shadow:
-                0 0 10px rgba(167, 216, 223, 0.35);
-        }
+@media (max-width: 480px) {
 
-        .description {
-            max-width: 650px;
+    .top-left {
+        left: 16px;
+    }
 
-            margin: auto;
+    .projects-button {
+        right: 16px;
+        padding: 8px 11px;
+    }
 
-            color:
-                rgba(220, 235, 238, 0.76);
+    .player {
+        width: calc(100% - 18px);
+        border-radius: 25px;
 
-            font-family: "DM Sans", sans-serif;
+        grid-template-columns:
+            42px minmax(0, 1fr);
+    }
 
-            font-size: 17px;
+    .controls {
+        grid-column: 1 / 3;
+        grid-row: 3;
 
-            line-height: 1.8;
-        }
+        justify-content: center;
+        padding-top: 3px;
+    }
 
-        .creator {
-            margin-top: 50px;
+    .progress-area {
+        grid-column: 2;
+    }
 
-            padding-top: 35px;
+    .volume-area {
+        display: none;
+    }
 
-            border-top:
-                1px solid rgba(220, 242, 246, 0.12);
-        }
+    .album {
+        width: 42px;
+        height: 42px;
+    }
 
-        .creator-title {
-            margin: 0 0 10px;
+    .song-name {
+        font-size: 13px;
+    }
 
-            color:
-                rgba(183, 216, 222, 0.58);
+    .control {
+        width: 34px;
+        height: 34px;
+    }
 
-            font-family: "DM Sans", sans-serif;
-
-            font-size: 10px;
-
-            letter-spacing: 4px;
-        }
-
-        .creator h2 {
-            margin: 0;
-
-            color: #eaf6f8;
-
-            font-family: "Rye", serif;
-
-            font-size: 38px;
-
-            font-weight: normal;
-
-            text-shadow:
-                0 0 18px rgba(182, 225, 232, 0.16);
-        }
-
-        .creator-role {
-            margin: 12px 0 0;
-
-            color:
-                rgba(224, 239, 242, 0.72);
-
-            font-family: "DM Sans", sans-serif;
-
-            font-size: 12px;
-
-            letter-spacing: 2px;
-        }
-
-        .creator-info {
-            max-width: 550px;
-
-            margin: 25px auto 0;
-
-            color:
-                rgba(204, 226, 230, 0.58);
-
-            font-family: "DM Sans", sans-serif;
-
-            font-size: 14px;
-
-            line-height: 1.7;
-        }
-
-        .creator-info strong {
-            color: rgba(235, 247, 249, 0.85);
-
-            font-weight: 600;
-        }
-
-        .copyright {
-            margin-top: 35px;
-
-            color:
-                rgba(205, 226, 230, 0.36);
-
-            font-family: "DM Sans", sans-serif;
-
-            font-size: 10px;
-
-            letter-spacing: 2px;
-        }
-
-        @media (max-width: 700px) {
-
-            .hero {
-                min-height: 620px;
-            }
-
-            .top-left {
-                top: 20px;
-                left: 20px;
-            }
-
-            .projects-button {
-                top: 18px;
-                right: 20px;
-
-                padding: 9px 13px;
-
-                font-size: 9px;
-
-                letter-spacing: 1px;
-            }
-
-            .player {
-                width: calc(100% - 25px);
-
-                bottom: 20px;
-
-                padding: 11px 13px;
-
-                grid-template-columns:
-                    44px minmax(0, 1fr) auto;
-
-                column-gap: 12px;
-            }
-
-            .album {
-                width: 44px;
-                height: 44px;
-            }
-
-            .song-name {
-                font-size: 14px;
-            }
-
-            .song-film {
-                font-size: 9px;
-            }
-
-            .controls {
-                gap: 4px;
-            }
-
-            .control {
-                width: 32px;
-                height: 32px;
-
-                font-size: 12px;
-            }
-
-            .play {
-                width: 39px;
-                height: 39px;
-            }
-
-            .about {
-                padding: 70px 15px;
-            }
-
-            .about-box {
-                padding: 45px 25px;
-            }
-
-            .about-box h1 {
-                font-size: 40px;
-            }
-
-            .description {
-                font-size: 15px;
-            }
-
-            .creator h2 {
-                font-size: 30px;
-            }
-
-        }
-
-        @media (max-width: 480px) {
-
-            .top-left {
-                left: 16px;
-            }
-
-            .projects-button {
-                right: 16px;
-
-                padding: 8px 11px;
-            }
-
-            .player {
-                width: calc(100% - 18px);
-
-                border-radius: 25px;
-
-                grid-template-columns:
-                    42px minmax(0, 1fr);
-            }
-
-            .controls {
-                grid-column: 1 / 3;
-
-                grid-row: 3;
-
-                justify-content: center;
-
-                padding-top: 3px;
-            }
-
-            .progress-area {
-                grid-column: 2;
-            }
-
-            .volume-area {
-                display: none;
-            }
-
-            .album {
-                width: 42px;
-                height: 42px;
-            }
-
-            .song-name {
-                font-size: 13px;
-            }
-
-            .control {
-                width: 34px;
-                height: 34px;
-            }
-
-            .play {
-                width: 41px;
-                height: 41px;
-            }
-
-        }
-
-    </style>
-
+    .play {
+        width: 41px;
+        height: 41px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <section class="hero">
+<section class="hero">
 
-        <div class="top-left">
+    <div class="top-left">
+        <div class="live-time" id="liveTime">7:49 PM</div>
+    </div>
 
-            <div
-                class="live-time"
-                id="liveTime"
-            >
-                7:49 PM
+    <a
+        href="https://github.com/preetpatil214?tab=repositories"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="projects-button"
+    >
+        MY PROJECTS
+        <span>↗</span>
+    </a>
+
+    <div class="player">
+
+        <div class="album"></div>
+
+        <div class="song-info">
+
+            <div class="song-name" id="songName">
+                Ajab Si
             </div>
 
-        </div>
-
-
-        <a
-            href="https://github.com/preetpatil214?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="projects-button"
-        >
-            MY PROJECTS
-            <span>↗</span>
-        </a>
-
-
-        <div class="player">
-
-            <div class="album"></div>
-
-
-            <div class="song-info">
-
-                <div
-                    class="song-name"
-                    id="songName"
-                >
-                    Ajab Si
-                </div>
-
-                <div
-                    class="song-film"
-                    id="songFilm"
-                >
-                    Om Shanti Om
-                </div>
-
-                <div class="progress-area">
-
-                    <span
-                        class="time"
-                        id="currentTime"
-                    >
-                        0:00
-                    </span>
-
-                    <input
-                        type="range"
-                        class="progress"
-                        id="progress"
-                        min="0"
-                        max="100"
-                        value="0"
-                        step="0.1"
-                    >
-
-                    <span
-                        class="time"
-                        id="duration"
-                    >
-                        0:00
-                    </span>
-
-                </div>
-
+            <div class="song-film" id="songFilm">
+                Om Shanti Om
             </div>
 
+            <div class="progress-area">
 
-            <div class="controls">
-
-                <button
-                    type="button"
-                    class="control"
-                    id="previousBtn"
-                    title="Previous"
-                    aria-label="Previous song"
-                >
-                    ⏮
-                </button>
-
-                <button
-                    type="button"
-                    class="control play"
-                    id="playBtn"
-                    title="Play / Pause"
-                    aria-label="Play or pause"
-                >
-                    ▶
-                </button>
-
-                <button
-                    type="button"
-                    class="control"
-                    id="nextBtn"
-                    title="Next"
-                    aria-label="Next song"
-                >
-                    ⏭
-                </button>
-
-            </div>
-
-
-            <div class="volume-area">
-
-                <span
-                    class="volume-icon"
-                    aria-hidden="true"
-                >
-                    🔊
+                <span class="time" id="currentTime">
+                    0:00
                 </span>
 
                 <input
                     type="range"
-                    class="volume"
-                    id="volume"
+                    class="progress"
+                    id="progress"
                     min="0"
-                    max="1"
-                    value="0.8"
-                    step="0.01"
-                    aria-label="Volume"
+                    max="100"
+                    value="0"
+                    step="0.1"
                 >
+
+                <span class="time" id="duration">
+                    0:00
+                </span>
 
             </div>
 
         </div>
 
+        <div class="controls">
 
-        <audio
-            id="audio"
-            preload="metadata"
-        ></audio>
+            <button
+                type="button"
+                class="control"
+                id="previousBtn"
+                title="Previous"
+                aria-label="Previous song"
+            >
+                ⏮
+            </button>
 
-    </section>
+            <button
+                type="button"
+                class="control play"
+                id="playBtn"
+                title="Play / Pause"
+                aria-label="Play or pause"
+            >
+                ▶
+            </button>
 
+            <button
+                type="button"
+                class="control"
+                id="nextBtn"
+                title="Next"
+                aria-label="Next song"
+            >
+                ⏭
+            </button>
 
-    <section
-        class="about"
-        id="about"
-    >
+        </div>
 
-        <div class="about-box">
+        <div class="volume-area">
 
-            <p class="small-heading">
-                KAALI PEELI RADIO
+            <span class="volume-icon">🔊</span>
+
+            <input
+                type="range"
+                class="volume"
+                id="volume"
+                min="0"
+                max="1"
+                value="0.8"
+                step="0.01"
+                aria-label="Volume"
+            >
+
+        </div>
+
+    </div>
+
+    <audio id="audio" preload="metadata"></audio>
+
+</section>
+
+<section class="about" id="about">
+
+    <div class="about-box">
+
+        <p class="small-heading">
+            KAALI PEELI RADIO
+        </p>
+
+        <h1>
+            THE RIDE
+            <br>
+            BEGINS.
+        </h1>
+
+        <div class="line"></div>
+
+        <p class="description">
+
+            Kaali Peeli Radio is a nostalgic ride through
+            the sounds of Mumbai.
+
+            <br><br>
+
+            Inspired by rainy evenings, old radios,
+            Kaali Peeli taxis and the unforgettable
+            Bollywood songs of the 2000s.
+
+        </p>
+
+        <div class="creator">
+
+            <p class="creator-title">
+                CREATED &amp; DESIGNED BY
             </p>
 
-            <h1>
-                THE RIDE
-                <br>
-                BEGINS.
-            </h1>
+            <h2>
+                PREET PATIL
+            </h2>
 
-            <div class="line"></div>
+            <p class="creator-role">
+                Concept · Design · Development
+            </p>
 
-            <p class="description">
+            <p class="creator-info">
 
-                Kaali Peeli Radio is a nostalgic ride through
-                the sounds of Mumbai.
+                Kaali Peeli Radio is an original web concept
+                created and designed by Preet Patil.
 
                 <br><br>
 
-                Inspired by rainy evenings, old radios,
-                Kaali Peeli taxis and the unforgettable
-                Bollywood songs of the 2000s.
+                Built with the assistance of
+                <strong>ChatGPT</strong> for development,
+                debugging, creative direction and refinement.
 
-            </p>
-
-
-            <div class="creator">
-
-                <p class="creator-title">
-                    CREATED &amp; DESIGNED BY
-                </p>
-
-                <h2>
-                    PREET PATIL
-                </h2>
-
-                <p class="creator-role">
-                    Concept · Design · Development
-                </p>
-
-                <p class="creator-info">
-
-                    Kaali Peeli Radio is an original web concept
-                    created and designed by Preet Patil.
-
-                    <br><br>
-
-                    Built with the assistance of
-                    <strong>ChatGPT</strong> for development,
-                    debugging, creative direction and refinement.
-
-                </p>
-
-            </div>
-
-
-            <p class="copyright">
-                © 2026 PREET PATIL · ALL RIGHTS RESERVED
             </p>
 
         </div>
 
-    </section>
+        <p class="copyright">
+            © 2026 PREET PATIL · ALL RIGHTS RESERVED
+        </p>
 
+    </div>
 
-    <script>
+</section>
 
-        const songs = [
+<script>
+
+const songs = [
+    {
+        file: "1song.mp3",
+        name: "Ajab Si",
+        film: "Om Shanti Om"
+    },
+    {
+        file: "2song.mp3",
+        name: "Pehli Nazar Mein",
+        film: "Race"
+    },
+    {
+        file: "3song.mp3",
+        name: "Tum Se Hi",
+        film: "Jab We Met"
+    },
+    {
+        file: "4song.mp3",
+        name: "Pee Loon",
+        film: "Once Upon a Time in Mumbaai"
+    },
+    {
+        file: "5song.mp3",
+        name: "Tera Hone Laga Hoon",
+        film: "Ajab Prem Ki Ghazab Kahani"
+    }
+];
+
+const audio = document.getElementById("audio");
+const playBtn = document.getElementById("playBtn");
+const previousBtn = document.getElementById("previousBtn");
+const nextBtn = document.getElementById("nextBtn");
+const progress = document.getElementById("progress");
+const volume = document.getElementById("volume");
+const songName = document.getElementById("songName");
+const songFilm = document.getElementById("songFilm");
+const currentTime = document.getElementById("currentTime");
+const duration = document.getElementById("duration");
+const liveTime = document.getElementById("liveTime");
+
+let currentSong = 0;
+
+audio.volume = Number(volume.value);
+
+function loadSong(index) {
+
+    currentSong = index;
+
+    const song = songs[currentSong];
+
+    audio.src = song.file;
+
+    songName.textContent = song.name;
+    songFilm.textContent = song.film;
+
+    progress.value = 0;
+    currentTime.textContent = "0:00";
+    duration.textContent = "0:00";
+}
+
+function playSong() {
+
+    const playPromise = audio.play();
+
+    if (playPromise !== undefined) {
+
+        playPromise
+            .then(() => {
+                playBtn.textContent = "Ⅱ";
+            })
+            .catch(() => {
+                playBtn.textContent = "▶";
+            });
+
+    }
+}
+
+function pauseSong() {
+
+    audio.pause();
+
+    playBtn.textContent = "▶";
+}
+
+function nextSong() {
+
+    currentSong++;
+
+    if (currentSong >= songs.length) {
+        currentSong = 0;
+    }
+
+    loadSong(currentSong);
+    playSong();
+}
+
+function previousSong() {
+
+    if (audio.currentTime > 3) {
+
+        audio.currentTime = 0;
+
+        return;
+    }
+
+    currentSong--;
+
+    if (currentSong < 0) {
+        currentSong = songs.length - 1;
+    }
+
+    loadSong(currentSong);
+    playSong();
+}
+
+function formatTime(seconds) {
+
+    if (!Number.isFinite(seconds) || seconds < 0) {
+        return "0:00";
+    }
+
+    const minutes = Math.floor(seconds / 60);
+
+    const secondsPart = Math.floor(seconds % 60)
+        .toString()
+        .padStart(2, "0");
+
+    return `${minutes}:${secondsPart}`;
+}
+
+playBtn.addEventListener("click", () => {
+
+    if (audio.paused) {
+        playSong();
+    } else {
+        pauseSong();
+    }
+
+});
+
+previousBtn.addEventListener("click", previousSong);
+
+nextBtn.addEventListener("click", nextSong);
+
+volume.addEventListener("input", () => {
+
+    audio.volume = Number(volume.value);
+
+});
+
+progress.addEventListener("input", () => {
+
+    if (!Number.isFinite(audio.duration) || audio.duration <= 0) {
+        return;
+    }
+
+    audio.currentTime =
+        (Number(progress.value) / 100) * audio.duration;
+
+});
+
+audio.addEventListener("loadedmetadata", () => {
+
+    duration.textContent = formatTime(audio.duration);
+
+});
+
+audio.addEventListener("timeupdate", () => {
+
+    if (!Number.isFinite(audio.duration) || audio.duration <= 0) {
+        return;
+    }
+
+    progress.value =
+        (audio.currentTime / audio.duration) * 100;
+
+    currentTime.textContent =
+        formatTime(audio.currentTime);
+
+    duration.textContent =
+        formatTime(audio.duration);
+
+});
+
+audio.addEventListener("play", () => {
+
+    playBtn.textContent = "Ⅱ";
+
+});
+
+audio.addEventListener("pause", () => {
+
+    playBtn.textContent = "▶";
+
+});
+
+audio.addEventListener("ended", () => {
+
+    nextSong();
+
+});
+
+audio.addEventListener("error", () => {
+
+    playBtn.textContent = "▶";
+
+});
+
+function updateTime() {
+
+    const now = new Date();
+
+    liveTime.textContent =
+        now.toLocaleTimeString(
+            "en-IN",
             {
-                file: "1song.mp3",
-                name: "Ajab Si",
-                film: "Om Shanti Om"
-            },
-            {
-                file: "2song.mp3",
-                name: "Pehli Nazar Mein",
-                film: "Race"
-            },
-            {
-                file: "3song.mp3",
-                name: "Tum Se Hi",
-                film: "Jab We Met"
-            },
-            {
-                file: "4song.mp3",
-                name: "Pee Loon",
-                film: "Once Upon a Time in Mumbaai"
-            },
-            {
-                file: "5song.mp3",
-                name: "Tera Hone Laga Hoon",
-                film: "Ajab Prem Ki Ghazab Kahani"
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true
             }
-        ];
+        );
 
+}
 
-        const audio = document.getElementById("audio");
-        const playBtn = document.getElementById("playBtn");
-        const previousBtn = document.getElementById("previousBtn");
-        const nextBtn = document.getElementById("nextBtn");
-        const progress = document.getElementById("progress");
-        const volume = document.getElementById("volume");
-        const songName = document.getElementById("songName");
-        const songFilm = document.getElementById("songFilm");
-        const currentTime = document.getElementById("currentTime");
-        const duration = document.getElementById("duration");
-        const liveTime = document.getElementById("liveTime");
+updateTime();
 
+setInterval(updateTime, 30000);
 
-        let currentSong = 0;
+loadSong(0);
 
-
-        audio.volume = Number(volume.value);
-
-
-        function loadSong(index) {
-
-            currentSong = index;
-
-            const song = songs[currentSong];
-
-            audio.src = song.file;
-
-            songName.textContent = song.name;
-            songFilm.textContent = song.film;
-
-            progress.value = 0;
-
-            currentTime.textContent = "0:00";
-            duration.textContent = "0:00";
-
-        }
-
-
-        function playSong() {
-
-            const playPromise = audio.play();
-
-            if (playPromise !== undefined) {
-
-                playPromise
-                    .then(() => {
-                        playBtn.textContent = "Ⅱ";
-                    })
-                    .catch(() => {
-                        playBtn.textContent = "▶";
-                    });
-
-            }
-
-        }
-
-
-        function pauseSong() {
-
-            audio.pause();
-
-            playBtn.textContent = "▶";
-
-        }
-
-
-        function nextSong() {
-
-            currentSong++;
-
-            if (currentSong >= songs.length) {
-                currentSong = 0;
-            }
-
-            loadSong(currentSong);
-
-            playSong();
-
-        }
-
-
-        function previousSong() {
-
-            if (audio.currentTime > 3) {
-
-                audio.currentTime = 0;
-
-                return;
-
-            }
-
-            currentSong--;
-
-            if (currentSong < 0) {
-                currentSong = songs.length - 1;
-            }
-
-            loadSong(currentSong);
-
-            playSong();
-
-        }
-
-
-        function formatTime(seconds) {
-
-            if (!Number.isFinite(seconds) || seconds < 0) {
-                return "0:00";
-            }
-
-            const minutes = Math.floor(seconds / 60);
-
-            const secondsPart = Math.floor(seconds % 60)
-                .toString()
-                .padStart(2, "0");
-
-            return `${minutes}:${secondsPart}`;
-
-        }
-
-
-        playBtn.addEventListener("click", () => {
-
-            if (audio.paused) {
-                playSong();
-            } else {
-                pauseSong();
-            }
-
-        });
-
-
-        previousBtn.addEventListener("click", previousSong);
-
-
-        nextBtn.addEventListener("click", nextSong);
-
-
-        volume.addEventListener("input", () => {
-
-            audio.volume = Number(volume.value);
-
-        });
-
-
-        progress.addEventListener("input", () => {
-
-            if (!Number.isFinite(audio.duration) || audio.duration <= 0) {
-                return;
-            }
-
-            audio.currentTime =
-                (Number(progress.value) / 100) * audio.duration;
-
-        });
-
-
-        audio.addEventListener("loadedmetadata", () => {
-
-            duration.textContent =
-                formatTime(audio.duration);
-
-        });
-
-
-        audio.addEventListener("timeupdate", () => {
-
-            if (!Number.isFinite(audio.duration) || audio.duration <= 0) {
-                return;
-            }
-
-            progress.value =
-                (audio.currentTime / audio.duration) * 100;
-
-            currentTime.textContent =
-                formatTime(audio.currentTime);
-
-            duration.textContent =
-                formatTime(audio.duration);
-
-        });
-
-
-        audio.addEventListener("play", () => {
-
-            playBtn.textContent = "Ⅱ";
-
-        });
-
-
-        audio.addEventListener("pause", () => {
-
-            playBtn.textContent = "▶";
-
-        });
-
-
-        audio.addEventListener("ended", () => {
-
-            nextSong();
-
-        });
-
-
-        audio.addEventListener("error", () => {
-
-            playBtn.textContent = "▶";
-
-        });
-
-
-        function updateTime() {
-
-            const now = new Date();
-
-            liveTime.textContent =
-                now.toLocaleTimeString(
-                    "en-IN",
-                    {
-                        hour: "numeric",
-                        minute: "2-digit",
-                        hour12: true
-                    }
-                );
-
-        }
-
-
-        updateTime();
-
-        setInterval(updateTime, 30000);
-
-
-        loadSong(0);
-
-    </script>
+</script>
 
 </body>
-
 </html>
